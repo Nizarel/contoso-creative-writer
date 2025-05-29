@@ -25,9 +25,29 @@ class Message(BaseModel):
 
 
 class Task(BaseModel):
-    research: str 
-    products: str 
-    assignment: str 
+    """
+    Task model for article creation workflow.
+    
+    Defines the input parameters for the multi-agent article creation process.
+    """
+    research: str = Field(
+        description="Research context or topic query for the researcher agent",
+        example="Can you find the latest camping trends and what folks are doing in the winter?",
+        min_length=10,
+        max_length=1000
+    )
+    products: str = Field(
+        description="Product search context for finding relevant items",
+        example="Can you use a selection of tents and sleeping bags as context?",
+        min_length=10,
+        max_length=500
+    )
+    assignment: str = Field(
+        description="Writing assignment instructions for the writer agent",
+        example="Write a fun and engaging article that includes the research and product information. The article should be between 800 and 1000 words. Make sure to cite sources in the article as you mention the research not at the end.",
+        min_length=20,
+        max_length=2000
+    )
 
 DEFAULT_LOG_LEVEL = 25
 
